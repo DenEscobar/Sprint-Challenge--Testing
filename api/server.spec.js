@@ -22,8 +22,30 @@ describe('the route handlers', () =>{
             expect(response.body).toMatchObject(expected)
         })
     })
-})
-//GET /games
 
-//[ ] The GET /games endpoint should return the list of games and HTTP status code 200.
-//[ ] Write a test to make sure this endpoint always returns an array, even if there are no games stored. If there are no games to return, the endpoint should return an empty array.
+    describe('post /', () =>{
+        it('responds with 201 when body is correct', async () =>{
+            const body={
+                name: 'Fallout New Vegas',
+                genre: 'Action role-playing'
+            }
+            const response = await request(server).post('/games');
+            expect(response.status).toBe(201)
+        })
+        it('responds with 422 when the body is missing data', async () =>{
+            const body={
+                name: 'Fallout New Vegas'
+            }
+            const response = await request(server).post('/games');
+            expect(response.status).toBe(422)
+        })
+        it('responds with json', async () =>{
+            const body={
+                name: 'Fallout New Vegas',
+                genre: 'Action role-playing'
+            }
+            const response = await request(server).post('/games');
+            expect(response.type).toMatch(/json/i)
+        })
+    })
+})
