@@ -29,14 +29,14 @@ describe('the route handlers', () =>{
                 name: 'Fallout New Vegas',
                 genre: 'Action role-playing'
             }
-            const response = await request(server).post('/games');
+            const response = await request(server).post('/games').send(body);
             expect(response.status).toBe(201)
         })
         it('responds with 422 when the body is missing data', async () =>{
             const body={
                 name: 'Fallout New Vegas'
             }
-            const response = await request(server).post('/games');
+            const response = await request(server).post('/games').send(body);
             expect(response.status).toBe(422)
         })
         it('responds with json', async () =>{
@@ -44,7 +44,7 @@ describe('the route handlers', () =>{
                 name: 'Fallout New Vegas',
                 genre: 'Action role-playing'
             }
-            const response = await request(server).post('/games');
+            const response = await request(server).post('/games').send(body);
             expect(response.type).toMatch(/json/i)
         })
     })
