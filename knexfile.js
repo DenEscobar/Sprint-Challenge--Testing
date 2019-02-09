@@ -7,7 +7,7 @@ module.exports = {
     connection: {
       filename: './data/games.db'
     },
-    useNullAdDefault: true,
+    useNullAsDefault: true,
     migrations: {
       directory: './data/migrations',
     },
